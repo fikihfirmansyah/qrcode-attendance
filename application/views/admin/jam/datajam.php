@@ -7,8 +7,8 @@
  						<tr>
  							<th>Id</th>
  							<th>Jam Masuk</th>
- 							<th>Jam Keluar</th>
-                            <th>Toleransi masuk</th>
+ 							<!-- <th>Jam Keluar</th> -->
+ 							<th>Toleransi masuk</th>
  							<th>Opsi</th>
  						</tr>
  					</thead>
@@ -17,10 +17,10 @@
  							<tr>
  								<td><?= $jam['id_jam'] ?></td>
  								<td><?= $jam['jam_masuk'] ?></td>
-                                <td><?= $jam['jam_keluar'] ?></td>
-                                <td><?= $jam['toleransi_masuk'] ?></td>
+ 								<!-- <td><?= $jam['jam_keluar'] ?></td> -->
+ 								<td><?= $jam['toleransi_masuk'] ?></td>
  								<td>
- 									<a  href="<?= base_url('jam/editJam/' .  $jam['id_jam']) ?>" class="btn btn-primary"><span class="fa fa-edit"></span></a>
+ 									<a href="<?= base_url('jam/editJam/' .  $jam['id_jam']) ?>" class="btn btn-primary"><span class="fa fa-edit"></span></a>
  								</td>
  							</tr>
 

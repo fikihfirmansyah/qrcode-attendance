@@ -12,7 +12,7 @@
 						<thead>
 							<tr>
 								<th>No</th>
-								<th>NIP</th>
+								<th>Nomor ID Card</th>
 								<th>Nama</th>
 								<th>Hadir</th>
 								<th>Cuti</th>

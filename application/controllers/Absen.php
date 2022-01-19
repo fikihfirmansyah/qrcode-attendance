@@ -78,10 +78,10 @@ class Absen extends CI_Controller
 	public function rekapAbsensiPerKaryawan()
 	{
 		$data = [
-			'title' => 'Rekap Absensi Karyawan (' . $this->uri->segment(3) . ')',
+			'title' => 'Rekap Absensi Peserta (' . $this->uri->segment(3) . ')',
 			'page' => 'admin/absensi/rekapabsensiperkaryawan',
 			'subtitle' => 'Admin',
-			'subtitle2' => 'Rekap Absensi Karyawan',
+			'subtitle2' => 'Rekap Absensi Peserta',
 			'nama' => $this->uri->segment(3),
 			'user' => $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array(),
 			'data' => $this->absen->absenWhere($this->uri->segment(3))->result_array()
@@ -97,10 +97,10 @@ class Absen extends CI_Controller
 		$nama = $this->input->post('nama');
 
 		$data = [
-			'title' => 'Filter Rekap Absensi Karyawan',
+			'title' => 'Filter Rekap Absensi Peserta',
 			'page' => 'admin/absensi/rekapabsensiperkaryawanfilter',
 			'subtitle' => 'Admin',
-			'subtitle2' => 'Filter Rekap Absensi Karyawan',
+			'subtitle2' => 'Filter Rekap Absensi Peserta',
 			'user' => $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array(),
 			'data' => $this->absen->whereTanggal($awal, $akhir, $nama)->result_array()
 		];
@@ -114,7 +114,10 @@ class Absen extends CI_Controller
 		$tgl = date('Y-m-d');
 		$jam_msk = date('H:i:s');
 		$jam_klr = date('H:i:s');
+		$result_code = str_replace('code', '', $result_code);
+
 		$cek_id = $this->absen->cek_id($result_code);
+
 		$cek_kehadiran = $this->absen->cek_kehadiran($result_code, $tgl);
 		$jam = $this->db->get('jam')->row_array();
 
@@ -171,8 +174,6 @@ class Absen extends CI_Controller
 					'status' => 'masuk',
 				);
 			}
-			// var_dump($data);
-			// exit;
 			$this->absen->absen_masuk($data);
 			$this->session->set_flashdata('message', 'swal("Berhasil!", "Berhasil ' . $alert . '", "success");');
 			redirect($_SERVER['HTTP_REFERER']);
@@ -221,9 +222,9 @@ class Absen extends CI_Controller
 
 		$this->load->library('ciqrcode');
 
-		$params['data'] = $data['karyawan']['username'];
-		$params['level'] = 'H';
-		$params['size'] = 10;
+		$params['data'] = $data['karyawan']['username'] . 'code';
+		$params['level'] = 'L';
+		$params['size'] = 5;
 		$params['savename'] = FCPATH . "assets/img/qrcode/" . $data['karyawan']['username'] . 'code.png';
 		$this->ciqrcode->generate($params);
 

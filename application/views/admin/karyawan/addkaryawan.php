@@ -4,14 +4,14 @@
 			<div class="card-body">
 				<form action="<?= base_url('add-karyawan'); ?>" method="post" enctype="multipart/form-data">
 					<div class="form-group row">
-						<label for="nip" class="col-sm-2 col-form-label">Nomer Induk Pegawai</label>
+						<label for="nip" class="col-sm-2 col-form-label">Nomor ID Card</label>
 						<div class="col-sm-10">
 							<input class="form-control" type="text" id="nip" name="nip">
 							<?= form_error('nip', '<small class="text-danger ml-3 mt-1">', '</small>'); ?>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="nama" class="col-sm-2 col-form-label">Nama Karyawan</label>
+						<label for="nama" class="col-sm-2 col-form-label">Nama Peserta</label>
 						<div class="col-sm-10">
 							<input class="form-control" type="text" id="nama" name="nama">
 							<?= form_error('nama', '<small class="text-danger ml-3 mt-1">', '</small>'); ?>
@@ -54,7 +54,7 @@
 							<?= form_error('jabatan', '<small class="text-danger ml-3 mt-1">', '</small>'); ?>
 						</div>
 					</div>
-				<input type="text" name="role_id" value="2" hidden="">
+					<input type="text" name="role_id" value="2" hidden="">
 					<div class="form-group row">
 						<label for="waktu" class="col-sm-2 col-form-label">Waktu Masuk</label>
 						<div class="col-sm-10">

@@ -34,7 +34,7 @@ class Karyawan extends CI_Controller
 			'required' => 'Nama Jabatan tidak boleh kosong.'
 		]);
 
-		if ($this->form_validation->run() == FALSE) {// kembali ke tampilan input lagi dan ada kalimat peringatn
+		if ($this->form_validation->run() == FALSE) { // kembali ke tampilan input lagi dan ada kalimat peringatn
 			$data = [
 				'title' => 'Tambah Data Jabatan',
 				'page' => 'admin/jabatan/addjabatan',
@@ -93,11 +93,11 @@ class Karyawan extends CI_Controller
 	public function index()
 	{
 		$data = [
-			'title' => 'Data Karyawan',
+			'title' => 'Data Peserta',
 			'page' => 'admin/karyawan/datakaryawan',
 			'subtitle' => 'Admin',
-			'subtitle2' => 'Data karyawan',
-			'data' => $this->admin->karyawan()->result()// utk menampilkan data2 karyawan
+			'subtitle2' => 'Data Peserta',
+			'data' => $this->admin->karyawan()->result() // utk menampilkan data2 karyawan
 		];
 
 		$this->load->view('templates/app', $data, FALSE);
@@ -106,13 +106,13 @@ class Karyawan extends CI_Controller
 	public function addkaryawan()
 	{
 
-		$this->form_validation->set_rules('nip', 'NIP', 'required|trim|is_unique[users.nip]', [
-			'required'  => 'NIP tidak boleh kosong.',
-			'is_unique' => 'NIP sudah terdaftar.'
+		$this->form_validation->set_rules('nip', 'Nomor ID Card', 'required|trim|is_unique[users.nip]', [
+			'required'  => 'Nomor ID Card tidak boleh kosong.',
+			'is_unique' => 'Nomor ID Card sudah terdaftar.'
 		]);
 
-		$this->form_validation->set_rules('nama', 'Nama Karyawan', 'required|trim', [
-			'required' => 'Nama Karyawan tidak boleh kosong.'
+		$this->form_validation->set_rules('nama', 'Nama Peserta', 'required|trim', [
+			'required' => 'Nama Peserta tidak boleh kosong.'
 		]);
 
 		$this->form_validation->set_rules('username', 'username', 'required|trim|is_unique[users.username]', [
@@ -146,10 +146,10 @@ class Karyawan extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE) {
 			$data = [
-				'title' => 'Tambah Data Karyawan',
+				'title' => 'Tambah Data Peserta',
 				'page' => 'admin/karyawan/addkaryawan',
 				'subtitle' => 'Admin',
-				'subtitle2' => 'Tambah Data Karyawan',
+				'subtitle2' => 'Tambah Data Peserta',
 				'jabatan' => $this->db->get('jabatan')->result()
 			];
 			$this->load->view('templates/app', $data);
@@ -182,7 +182,7 @@ class Karyawan extends CI_Controller
 			}
 
 			$this->db->insert('users', $data);
-			$this->session->set_flashdata('message', 'swal("Berhasil!", "Data Karyawan Berhasil Ditambahkan!", "success");');
+			$this->session->set_flashdata('message', 'swal("Berhasil!", "Data Peserta Berhasil Ditambahkan!", "success");');
 
 			redirect(base_url('data-karyawan'));
 		}
@@ -198,12 +198,12 @@ class Karyawan extends CI_Controller
 	public function editkaryawan($id)
 	{
 
-		$this->form_validation->set_rules('nip', 'NIP', 'required|trim', [
-			'required' => 'Nomer Induk Pegawai tidak boleh kosong.'
+		$this->form_validation->set_rules('nip', 'Nomor ID Card', 'required|trim', [
+			'required' => 'Nomor ID Card tidak boleh kosong.'
 		]);
 
-		$this->form_validation->set_rules('nama', 'Nama Karyawan', 'required|trim', [
-			'required' => 'Nama Karyawan tidak boleh kosong.'
+		$this->form_validation->set_rules('nama', 'Nama Peserta', 'required|trim', [
+			'required' => 'Nama Peserta tidak boleh kosong.'
 		]);
 
 		$this->form_validation->set_rules('username', 'username', 'required|trim', [
@@ -225,10 +225,10 @@ class Karyawan extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE) {
 			$data = [
-				'title' => 'Edit Data Karyawan',
+				'title' => 'Edit Data Peserta',
 				'page' => 'admin/karyawan/editkaryawan',
 				'subtitle' => 'Admin',
-				'subtitle2' => 'Edit Data Karyawan',
+				'subtitle2' => 'Edit Data Peserta',
 				'data' => $this->db->get('jabatan')->result(),
 				'detail' => $this->admin->usersid($id)->row()
 			];
@@ -265,7 +265,7 @@ class Karyawan extends CI_Controller
 				}
 			}
 			$this->admin->editKaryawan($id, $data);
-			$this->session->set_flashdata('message', 'swal("Berhasil!", "Data Karyawan Berhasil Ditambahkan!", "success");');
+			$this->session->set_flashdata('message', 'swal("Berhasil!", "Data Peserta Berhasil Ditambahkan!", "success");');
 
 			redirect(base_url('data-karyawan'));
 		}

@@ -49,7 +49,7 @@ class Absen_model extends CI_Model
 		$this->db->from('absen');
 		$this->db->join('users', 'users.username = absen.username');
 		$this->db->join('jabatan', 'jabatan.jabatan_id = users.jabatan_id');
-		$this->db->order_by('tanggal', 'desc');
+		$this->db->order_by('absen.id_absen', 'desc');
 		return $this->db->get();
 	}
 
@@ -77,7 +77,7 @@ class Absen_model extends CI_Model
 		$this->db->where("tanggal BETWEEN '$awal' AND '$akhir'");
 		$this->db->where("tanggal BETWEEN '$awal' AND '$akhir'");
 		$this->db->where('username', $nama);
-		
+
 		return $this->db->get();
 	}
 
@@ -96,8 +96,8 @@ class Absen_model extends CI_Model
 	{
 		$query_str =
 
-		$this->db->where('username', $username)
-		->get('users');
+			$this->db->where('username', $username)
+			->get('users');
 		if ($query_str->num_rows() > 0) {
 			return $query_str->row();
 		} else {
@@ -109,8 +109,8 @@ class Absen_model extends CI_Model
 	{
 		$query_str =
 
-		$this->db->where('username', $username)
-		->where('tanggal', $tgl)->get('absen');
+			$this->db->where('username', $username)
+			->where('tanggal', $tgl)->get('absen');
 		if ($query_str->num_rows() > 0) {
 			return $query_str->row();
 		} else {
@@ -128,25 +128,21 @@ class Absen_model extends CI_Model
 		$tgl = date('Y-m-d');
 		return
 
-		$this->db->where('username', $username)
-		->where('tanggal', $tgl)
-		->update('absen', $data);
+			$this->db->where('username', $username)
+			->where('tanggal', $tgl)
+			->update('absen', $data);
 	}
 
 	public function joinAll($where)
 	{
 		$this->db->select('*');
-		$this->db->from('absen a'); 
+		$this->db->from('absen a');
 		$this->db->join('users b', 'b.username=a.username');
 		$this->db->join('jabatan c', 'c.jabatan_id=b.jabatan_id');
-		$this->db->where('c.jabatan_id',$where);
-		$this->db->order_by('a.tanggal','desc');         
-		return $this->db->get(); 
+		$this->db->where('c.jabatan_id', $where);
+		$this->db->order_by('a.tanggal', 'desc');
+		return $this->db->get();
 	}
-
-	
-
-
 }
 
 /* End of file ModelName.php */

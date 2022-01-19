@@ -38,7 +38,9 @@ class Auth extends CI_Controller
 						$this->session->set_flashdata('message', 'swal("Berhasil!", "Berhasil Login!", "success");');
 						redirect('admin');
 					} else {
-						redirect('user');
+						$this->session->set_flashdata('message', 'swal("Ops!", "Email atau Password yang anda masukan salah", "error");');
+						redirect('auth');
+						// redirect('user');
 					}
 				} else {
 					// Jika password tidak sesuai

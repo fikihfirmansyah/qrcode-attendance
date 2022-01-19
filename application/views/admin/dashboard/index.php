@@ -7,7 +7,7 @@
 					<i class="mdi mdi-cube-outline bg-primary  text-white"></i>
 				</div>
 				<div>
-					<h5 class="font-16">Jumlah Karyawan</h5>
+					<h5 class="font-16">Jumlah Peserta</h5>
 				</div>
 				<h3 class="mt-4"><?= $karyawan ?></h3>
 			</div>
@@ -21,7 +21,7 @@
 					<i class="mdi mdi-cube-outline bg-primary  text-white"></i>
 				</div>
 				<div>
-					<h5 class="font-16">Jumlah Karyawan Melakukan Absen Hari Ini (<?= date('d-m-Y') ?>)</h5>
+					<h5 class="font-16">Jumlah Peserta Melakukan Absen Hari Ini (<?= date('d-m-Y') ?>)</h5>
 				</div>
 				<h3 class="mt-4"><?= $absenhariini ?></h3>
 			</div>

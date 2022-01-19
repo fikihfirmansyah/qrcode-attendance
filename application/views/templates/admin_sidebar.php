@@ -10,32 +10,36 @@
 						<a href="<?= base_url('admin'); ?>"><i class="icon-accelerator"></i> Dashboard</a>
 					</li>
 
-					<li class="has-submenu">
+					<li><a href="<?= base_url('data-karyawan'); ?>"><i class="icon-pencil-ruler"></i> Data Peserta</a></li>
+					<!-- <li class="has-submenu">
 						<a href="#"><i class="icon-pencil-ruler"></i> Master Data <i class="mdi mdi-chevron-down mdi-drop"></i></a>
 						<ul class="submenu megamenu">
 							<li>
 								<ul>
-									<li><a href="<?= base_url('data-karyawan'); ?>">Data Karyawan</a></li>
-									<li><a href="<?= base_url('data-jabatan'); ?>">Data Jabatan</a></li>
-									<li><a href="<?= base_url('data-jam'); ?>">Data Jam</a></li>
-
+									<!-- <li><a href="<?= base_url('data-jabatan'); ?>">Data Jabatan</a></li> -->
+					<!-- <li><a href="<?= base_url('data-jam'); ?>">Data Jam</	a></li> -->
+					<!-- 
 								</ul>
 							</li>
 						</ul>
-					</li>
-					<li class="has-submenu">
+					</li> -->
+					<li><a href="<?= base_url('ambil-qr-code'); ?>"><i class="icon-pencil-ruler"></i>Ambil QR Code</a></li>
+					<li><a href="<?= base_url('scan-qr-code'); ?>"><i class="icon-pencil-ruler"></i>Scan QR Code</a></li>
+					<li><a href="<?= base_url('data-absensi'); ?>">Data Absensi</a></li>
+
+					<!-- <li class="has-submenu">
 						<a href="#"><i class="icon-pencil-ruler"></i> Master Absensi <i class="mdi mdi-chevron-down mdi-drop"></i></a>
 						<ul class="submenu megamenu">
 							<li>
 								<ul>
 									<li><a href="<?= base_url('data-absensi'); ?>">Data Absensi</a></li>
 									<li><a href="<?= base_url('rekap-absensi'); ?>">Rekap Absensi</a></li>
-									<li><a href="<?= base_url('ambil-qr-code'); ?>">Ambil QR Code</a></li>
+					<!-- <li><a href="<?= base_url('ambil-qr-code'); ?>">Ambil QR Code</a></li>
 									<li><a href="<?= base_url('scan-qr-code'); ?>">Scan QR Code</a></li>
 								</ul>
 							</li>
 						</ul>
-					</li>
+					</li> -->
 					<!-- <li class="has-submenu">
 						<a href="#"><i class="icon-pencil-ruler"></i> Laporan <i class="mdi mdi-chevron-down mdi-drop"></i></a>
 						<ul class="submenu megamenu">

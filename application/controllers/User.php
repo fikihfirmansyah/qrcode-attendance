@@ -33,8 +33,7 @@ class User extends CI_Controller
 			$data['waktu'] = 'Anda hari ini belum melakukan absen pulang';
 		} elseif ($absen['status'] == 'terlambat') {
 			$data['waktu'] = 'Anda hari ini belum melakukan absen pulang';
-
-		}elseif ($absen['status'] == 'pulang') {
+		} elseif ($absen['status'] == 'pulang') {
 			$data['waktu'] = 'Anda telah melakukan absen masuk dan pulang';
 		}
 
@@ -80,8 +79,8 @@ class User extends CI_Controller
 	public function edituser($id)
 	{
 
-		$this->form_validation->set_rules('nama', 'Nama Karyawan', 'required|trim', [
-			'required' => 'Nama Karyawan tidak boleh kosong.'
+		$this->form_validation->set_rules('nama', 'Nama Peserta', 'required|trim', [
+			'required' => 'Nama Peserta tidak boleh kosong.'
 		]);
 
 		$this->form_validation->set_rules('username', 'username', 'required|trim', [
@@ -99,14 +98,14 @@ class User extends CI_Controller
 			$data = [
 				'title' => 'Edit Profil',
 				'page' => 'user/editprofil',
-				'subtitle' => 'Karyawan',
+				'subtitle' => 'Peserta',
 				'subtitle2' => 'Edit Profil',
 				'data' => $this->db->get('jabatan')->result(),
 				'detail' => $this->user->tampiluserwhere($id)->row()
 			];
 			$this->load->view('templates/app', $data);
 		} else {
-			
+
 
 			$oldPhoto = $this->input->post('ganti_gambar');
 			$path = './images/users/';

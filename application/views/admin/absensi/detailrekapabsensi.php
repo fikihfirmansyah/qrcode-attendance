@@ -5,12 +5,12 @@
 				<table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 					<thead>
 						<tr>
-							<th>NIP</th>
+							<th>Nomor ID Card</th>
 							<th>Nama Lengkap</th>
 							<th>Username</th>
 							<th>Tanggal</th>
 							<th>Jam Masuk</th>
-							<th>Jam Keluar</th>
+							<!-- <th>Jam Keluar</th> -->
 							<th>Detail</th>
 						</tr>
 					</thead>
@@ -22,7 +22,7 @@
 								<td><?= $k['username'] ?></td>
 								<td><?= $k['tanggal'] ?></td>
 								<td><?= $k['jam_masuk'] ?></td>
-								<td><?= $k['jam_keluar'] ?></td>
+								<!-- <td><?= $k['jam_keluar'] ?></td> -->
 								<td><a href="<?php echo site_url('Absen/rekapAbsensiPerKaryawan/' . $k['username']); ?>" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Lihat</a></td>
 							</tr>
 

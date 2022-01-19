@@ -20,7 +20,7 @@
 								<th>Username</th>
 								<th>Tanggal</th>
 								<th>Jam Masuk</th>
-								<th>Jam Keluar</th>
+								<!-- <th>Jam Keluar</th> -->
 								<th>Status</th>
 
 							</tr>
@@ -32,7 +32,7 @@
 									<td><?= $a['username'] ?></td>
 									<td><?= $a['tanggal'] ?></td>
 									<td><?= $a['jam_masuk'] ?></td>
-									<td><?= $a['jam_keluar'] ?></td>
+									<!-- <td><?= $a['jam_keluar'] ?></td> -->
 									<td><?= $a['status'] ?></td>
 
 								</tr>

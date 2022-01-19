@@ -5,14 +5,14 @@
 				<form action="<?= base_url('Karyawan/editkaryawan/' . $detail->nip) ?>" method="post" enctype="multipart/form-data">
 					<input type="hidden" id="ganti_gambar" value="<?= $detail->photo ?>" name="ganti_gambar" class="form-control" placeholder="Pas Photo">
 					<div class="form-group row">
-						<label for="nip" class="col-sm-2 col-form-label">Nomer Induk Pegawai</label>
+						<label for="nip" class="col-sm-2 col-form-label">Nomor ID Card</label>
 						<div class="col-sm-10">
 							<input class="form-control" type="text" id="nip" value="<?= $detail->nip ?>" name=" nip">
 							<?= form_error('nip', '<small class="text-danger ml-3 mt-1">', '</small>'); ?>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="nama" class="col-sm-2 col-form-label">Nama Karyawan</label>
+						<label for="nama" class="col-sm-2 col-form-label">Nama Peserta</label>
 						<div class="col-sm-10">
 							<input class="form-control" type="text" id="nama" value="<?= $detail->nama ?>" name=" nama">
 							<?= form_error('nama', '<small class="text-danger ml-3 mt-1">', '</small>'); ?>
@@ -81,7 +81,7 @@
 										} ?> value="1">Administrator</option>
 								<option <?php if ($detail->role_id == '2') {
 											echo 'selected';
-										} ?> value="2">Karyawan</option>
+										} ?> value="2">Peserta</option>
 							</select>
 							<?= form_error('role_id', '<small class="text-danger ml-3 mt-1">', '</small>'); ?>
 						</div>

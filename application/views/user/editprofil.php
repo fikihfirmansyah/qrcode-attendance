@@ -4,9 +4,9 @@
 			<div class="card-body">
 				<form action="<?= base_url('User/edituser/' . $detail->nip) ?>" method="post" enctype="multipart/form-data">
 					<input type="hidden" id="ganti_gambar" value="<?= $detail->photo ?>" name="ganti_gambar" class="form-control" placeholder="Pas Photo">
-					
+
 					<div class="form-group row">
-						<label for="nama" class="col-sm-2 col-form-label">Nama Karyawan</label>
+						<label for="nama" class="col-sm-2 col-form-label">Nama Peserta</label>
 						<div class="col-sm-10">
 							<input class="form-control" type="text" id="nama" value="<?= $detail->nama ?>" name=" nama">
 							<?= form_error('nama', '<small class="text-danger ml-3 mt-1">', '</small>'); ?>
@@ -34,7 +34,7 @@
 							<?= form_error('username', '<small class="text-danger ml-3 mt-1">', '</small>'); ?>
 						</div>
 					</div>
-					
+
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label" for="pasphoto">Pas Photo</label>
 						<div class="col-sm-10">
