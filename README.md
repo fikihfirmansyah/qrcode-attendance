@@ -1,2 +1,2 @@
-# sistem-absensi-medina
- absensi qr code medina
+# sistem-absensi
+ absensi qr code
