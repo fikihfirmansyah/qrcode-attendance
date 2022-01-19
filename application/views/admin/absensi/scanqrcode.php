@@ -9,9 +9,35 @@
 		font-family: inherit;
 		font-size: 1.2rem;
 	}
+
+	video {
+		width: 100%;
+		height: auto;
+	}
+
+	select {
+
+		/* styling */
+		background-color: white;
+		border: thin solid blue;
+		border-radius: 4px;
+		display: inline-block;
+		font: inherit;
+		line-height: 1.5em;
+		padding: 0.5em 3.5em 0.5em 1em;
+
+		/* reset */
+
+		margin: 0;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+	}
 </style>
 
-<div class="row">
+<div class="row" onload="fullScreenNow();">
 	<div class="col-12">
 		<div class="card m-b-30">
 			<div class="card-body">
@@ -24,7 +50,7 @@
 						<div id="sourceSelectPanel" style="display:none">
 							<label for="sourceSelect">Change video source:</label>
 							<select id="sourceSelect" style="max-width:400px"></select>
-						</div>
+						</div><br>
 						<div>
 							<video id="video" width="500" height="400" style="border: 1px solid gray"></video>
 						</div>
@@ -37,42 +63,83 @@
 		</div>
 	</div> <!-- end col -->
 </div> <!-- end row -->
+<script>
+	addEventListener("click", function() {
+		var
+			el = document.documentElement,
+			rfs =
+			el.requestFullScreen ||
+			el.webkitRequestFullScreen ||
+			el.mozRequestFullScreen;
+		rfs.call(el);
+	});
+
+	// Find the right method, call on correct element
+	function launchFullScreen(element) {
+		if (element.requestFullScreen) {
+			element.requestFullScreen();
+		} else if (element.mozRequestFullScreen) {
+			element.mozRequestFullScreen();
+		} else if (element.webkitRequestFullScreen) {
+			element.webkitRequestFullScreen();
+		}
+	}
+
+	// Launch fullscreen for browsers that support it!
+	launchFullScreen(document.documentElement); // the whole page
+	launchFullScreen(document.getElementById("videoElement")); // any individual element
+</script>
 
 <script type="text/javascript" src="<?= base_url('assets/') ?>plugins/zxing/zxing.min.js"></script>
 <script type="text/javascript">
+	const codeReader = new ZXing.BrowserQRCodeReader()
+	let audio = new Audio("<?= base_url('assets/') ?>audio/beep.mp3");
+
+	function decodeVideoInputDevice(selectedDeviceId) {
+		codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video').then((result) => {
+			console.log(result)
+			document.getElementById('result').textContent = result.text
+			if (result != null) {
+				audio.play();
+			}
+
+			setTimeout(() => {
+				$('#button').submit();
+			}, 2000);
+		}).catch((err) => {
+			console.error(err)
+			document.getElementById('result').textContent = err
+		})
+	}
+
+	const sourceSelectInput = document.getElementById('sourceSelect');
+	sourceSelectInput.addEventListener('change', (ev) => {
+		const selectedDeviceId = sourceSelectInput.value;
+		decodeVideoInputDevice(selectedDeviceId);
+	})
+
 	window.addEventListener('load', function() {
 		let selectedDeviceId;
 		let audio = new Audio("<?= base_url('assets/') ?>audio/beep.mp3");
-		const codeReader = new ZXing.BrowserQRCodeReader()
 		console.log('ZXing code reader initialized')
 		codeReader.getVideoInputDevices()
 			.then((videoInputDevices) => {
-				const sourceSelect = document.getElementById('sourceSelect')
 				selectedDeviceId = videoInputDevices[0].deviceId
+				if (videoInputDevices[1] != null) {
+					selectedDeviceId = videoInputDevices[1].deviceId
+				}
 				if (videoInputDevices.length >= 1) {
 					videoInputDevices.forEach((element) => {
 						const sourceOption = document.createElement('option')
 						sourceOption.text = element.label
 						sourceOption.value = element.deviceId
-						sourceSelect.appendChild(sourceOption)
+						sourceSelectInput.appendChild(sourceOption)
 					})
-					sourceSelect.onchange = () => {
-						selectedDeviceId = sourceSelect.value;
-					};
 					const sourceSelectPanel = document.getElementById('sourceSelectPanel')
 					sourceSelectPanel.style.display = 'block'
 				}
-				codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video').then((result) => {
-					console.log(result)
-					document.getElementById('result').textContent = result.text
-					if (result != null) {
-						audio.play();
-					}
-					$('#button').submit();
-				}).catch((err) => {
-					console.error(err)
-					document.getElementById('result').textContent = err
-				})
+
+				decodeVideoInputDevice(selectedDeviceId);
 				console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
 			})
 			.catch((err) => {

@@ -28,7 +28,7 @@
 				<div class="text-center m-t-0 m-b-15">
 					<a href="index.html" class="logo logo-admin"><img src="<?= base_url('assets/') ?>assets/images/logo-dark.png" alt="" height="24"></a>
 				</div>
-				<h5 class="font-18 text-center">Login <br> E-Absensi CV Madinah Toserba</h5>
+				<h5 class="font-18 text-center">Login <br> E-Absensi QR Code Based</h5>
 				<br>
 				<form action="<?= base_url('auth') ?>" method="post" class="user">
 					<div class="form-group">
@@ -65,7 +65,7 @@
 						</div>
 					</div>
 
-				
+
 				</form>
 			</div>
 
