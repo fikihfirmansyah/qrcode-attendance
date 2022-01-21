@@ -14,8 +14,8 @@
  							<th>Nama Peserta</th>
  							<th>Username</th>
  							<th>Jabatan</th>
- 							<th>Photo</th>
- 							<th>Aksi</th>
+ 							<!-- <th>Photo</th> -->
+ 							<!-- <th>Aksi</th> -->
  						</tr>
  					</thead>
 
@@ -29,11 +29,11 @@
  								<td><?= ucfirst($users->nama) ?></td>
  								<td><?= ucfirst($users->username) ?></td>
  								<td><?= ucfirst($users->jabatan_nama) ?></td>
- 								<td> <small>Photo <a target="_blank" href="<?= base_url('images/users/' . $users->photo) ?>">Klik disini</a></small></td>
- 								<td>
+ 								<!-- <td> <small>Photo <a target="_blank" href="<?= base_url('images/users/' . $users->photo) ?>">Klik disini</a></small></td> -->
+ 								<!-- <td>
  									<a href="<?= base_url('karyawan/editkaryawan/' . $users->nip) ?>" class="btn btn-sm btn-primary btn-sm"><span class="fa fa-edit"></span></a>
  									<a onclick="return confirm('Apakah anda yakin ingin menghapus data karyawan ini?')" href="<?= base_url('karyawan/deletekaryawan/' . $users->nip) ?>" class="btn btn-sm btn-danger btn-sm"><span class="fa fa-trash"></span></a>
- 								</td>
+ 								</td> -->
  							</tr>
  						<?php } ?>
  					</tbody>

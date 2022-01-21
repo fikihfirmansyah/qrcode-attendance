@@ -68,6 +68,15 @@ class Absen_model extends CI_Model
 		return $this->db->get();
 	}
 
+	public function absenBySingleUser($username)
+	{
+		$this->db->select('*');
+		$this->db->from('absen');
+		$this->db->where('username', $username);
+		$this->db->order_by('datetime', 'desc');
+		return $this->db->get();
+	}
+
 	public function whereTanggal($awal, $akhir, $nama)
 	{
 

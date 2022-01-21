@@ -5,7 +5,7 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-	<title>E - Absensi | <?= $title; ?></title>
+	<title>E - Absensi HANURA | <?= $title; ?></title>
 	<meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
 	<meta content="Themesdesign" name="author" />
 	<link rel="shortcut icon" href="<?= base_url('assets/') ?>images/favicon.ico">
@@ -14,7 +14,12 @@
 	<link href="<?= base_url('assets/') ?>css/metismenu.min.css" rel="stylesheet" type="text/css">
 	<link href="<?= base_url('assets/') ?>css/icons.css" rel="stylesheet" type="text/css">
 	<link href="<?= base_url('assets/') ?>css/style.css" rel="stylesheet" type="text/css">
-
+	<style>
+		img.center {
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
 </head>
 
 <body>
@@ -28,6 +33,7 @@
 				<div class="text-center m-t-0 m-b-15">
 					<a href="index.html" class="logo logo-admin"><img src="<?= base_url('assets/') ?>assets/images/logo-dark.png" alt="" height="24"></a>
 				</div>
+				<img width="30%" class="center" src="<?= base_url('/images/logohanura.png') ?>">
 				<h5 class="font-18 text-center">Login <br> E-Absensi QR Code Based</h5>
 				<br>
 				<form action="<?= base_url('auth') ?>" method="post" class="user">

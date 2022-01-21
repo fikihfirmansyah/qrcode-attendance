@@ -23,7 +23,7 @@
 							</li>
 						</ul>
 					</li> -->
-					<li><a href="<?= base_url('ambil-qr-code'); ?>"><i class="icon-pencil-ruler"></i>Ambil QR Code</a></li>
+					<!-- <li><a href="<?= base_url('ambil-qr-code'); ?>"><i class="icon-pencil-ruler"></i>Ambil QR Code</a></li> -->
 					<li><a href="<?= base_url('scan-qr-code'); ?>"><i class="icon-pencil-ruler"></i>Scan QR Code</a></li>
 					<li><a href="<?= base_url('data-absensi'); ?>">Data Absensi</a></li>
 

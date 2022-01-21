@@ -52,7 +52,7 @@
 							<select id="sourceSelect" style="max-width:400px"></select>
 						</div><br>
 						<div>
-							<video id="video" width="500" height="400" style="border: 1px solid gray"></video>
+							<video id="video" height="100%" style="border: 1px solid gray"></video>
 						</div>
 						<textarea hidden="" name="username" id="result" readonly></textarea>
 						<span> <input type="submit" id="button" class="btn btn-success btn-md" value="Cek Kehadiran"></span>

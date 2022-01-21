@@ -11,6 +11,7 @@ class Absen extends CI_Controller
 		parent::__construct();
 		$this->load->model('Absen_model', 'absen');
 		$this->load->model('karyawan_model', 'karyawan');
+		$this->load->model('User_model', 'usermodel');
 		is_login();
 	}
 
@@ -113,6 +114,7 @@ class Absen extends CI_Controller
 		$result_code = $this->input->post('username');
 		$tgl = date('Y-m-d');
 		$jam_msk = date('H:i:s');
+		$now = new DateTime();
 		$jam_klr = date('H:i:s');
 		$result_code = str_replace('code', '', $result_code);
 
@@ -120,26 +122,38 @@ class Absen extends CI_Controller
 
 		$cek_kehadiran = $this->absen->cek_kehadiran($result_code, $tgl);
 		$jam = $this->db->get('jam')->row_array();
+		$datas = $this->absen->absenBySingleUser($result_code)->result_array();
+		$karyawan = $this->usermodel->tampiluserwhere($result_code)->result_array();
 
+		$timediff = 0;
+		if ($datas != null) {
+			$timediff = $now->diff(new DateTime($datas[0]['datetime']));
+		}
+		// var_dump($karyawan[0]['nama']);
+		// // var_dump(json_encode($cek_kehadiran));
+		// exit;
 		if (!$cek_id) {
 			$this->session->set_flashdata('message', 'swal("Gagal!", "Gagal Absen!, Qr Code tidak ditemukan!", "error");');
 			redirect($_SERVER['HTTP_REFERER']);
-		} elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00' && date('H:i:s') >= $jam['jam_keluar']) {
-			$data = array(
-				'jam_keluar' => $jam_klr,
-				'status' => 'pulang',
-			);
-			$this->absen->absen_pulang($result_code, $data);
-			$this->session->set_flashdata('message', 'swal("Berhasil!", "Berhasil Absen Pulang!", "success");');
-			redirect($_SERVER['HTTP_REFERER']);
-		} elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar != '00:00:00' && $cek_kehadiran->status == 'pulang') {
-			$this->session->set_flashdata('message', 'swal("Warning!", "Sudah Absen Pulang!", "warning");');
+		}
+		// elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00' && date('H:i:s') >= $jam['jam_keluar']) {
+		// 	$data = array(
+		// 		'jam_keluar' => $jam_klr,
+		// 		'status' => 'pulang',
+		// 	);
+		// 	$this->absen->absen_pulang($result_code, $data);
+		// 	$this->session->set_flashdata('message', 'swal("Berhasil!", "Berhasil Absen Pulang!", "success");');
+		// 	redirect($_SERVER['HTTP_REFERER']);
+		// }
+		// elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar != '00:00:00' && $cek_kehadiran->status == 'pulang') {
+		// 	$this->session->set_flashdata('message', 'swal("Warning!", "Sudah Absen Pulang!", "warning");');
+		// 	redirect($_SERVER['HTTP_REFERER']);
+		// 	return false;
+		// }
+		elseif ($timediff->i <= 5 && $timediff != 0) {
+			$this->session->set_flashdata('message', 'swal("Warning!", "Halo ' . $karyawan[0]['nama'] . ', Anda Sudah Presensi Masuk Kurang dari ' . $timediff->i . ' menit yang lalu", "warning");');
 			redirect($_SERVER['HTTP_REFERER']);
 			return false;
-			// } elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00' && date('H:i:s') <= $jam['jam_keluar']) {
-			// 	$this->session->set_flashdata('message', 'swal("Warning!", "Sudah Absen Masuk!", "warning");');
-			// 	redirect($_SERVER['HTTP_REFERER']);
-			// 	return false;
 		}
 
 		// elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk == '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00'&& date('H:i:s') > '09:00:00' && date('H:i:s') < '16:00:00' ) {
@@ -156,9 +170,9 @@ class Absen extends CI_Controller
 
 
 		else {
+			$dataUser = $this->db->get_where('users', ['username' => $result_code])->row_array();
 			if (date('H:i:s') >= $jam['toleransi_masuk']) {
 				$alert = 'Absen terlambat';
-
 				$data = array(
 					'username' => $result_code,
 					'tanggal' => $tgl,
@@ -175,7 +189,7 @@ class Absen extends CI_Controller
 				);
 			}
 			$this->absen->absen_masuk($data);
-			$this->session->set_flashdata('message', 'swal("Berhasil!", "Berhasil ' . $alert . '", "success");');
+			$this->session->set_flashdata('message', 'swal("Selamat datang ' . $dataUser['nama'] . '!", "Berhasil ' . $alert . '", "success");');
 			redirect($_SERVER['HTTP_REFERER']);
 		}
 	}
