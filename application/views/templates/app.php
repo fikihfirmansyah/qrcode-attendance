@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 	<title>E - Absensi HANURA | <?= $title ?></title>
-	<meta content="Responsive admin theme build on top of Bootstrap 4" name="description" />
+	<meta content="Sistem Presensi Kehadiran dengan QR CODE - HANURA" name="description" />
 	<meta content="Themesdesign" name="author" />
 	<link rel="shortcut icon" href="<?= base_url('images/users/') ?>default.png">
 
