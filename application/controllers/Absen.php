@@ -133,7 +133,7 @@ class Absen extends CI_Controller
 		// // var_dump(json_encode($cek_kehadiran));
 		// exit;
 		if (!$cek_id) {
-			$this->session->set_flashdata('message', 'swal("Gagal!", "Gagal Absen!, Qr Code tidak ditemukan!", "error");');
+			$this->session->set_flashdata('message', 'swal("Gagal!", "Gagal Absen!, \nQr Code tidak jelas terbaca!", "error");');
 			redirect($_SERVER['HTTP_REFERER']);
 		}
 		// elseif ($cek_kehadiran && $cek_kehadiran->jam_masuk != '00:00:00' && $cek_kehadiran->jam_keluar == '00:00:00' && date('H:i:s') >= $jam['jam_keluar']) {
@@ -151,7 +151,11 @@ class Absen extends CI_Controller
 		// 	return false;
 		// }
 		elseif ($timediff->i <= 5 && $timediff != 0) {
-			$this->session->set_flashdata('message', 'swal("Warning!", "Halo ' . $karyawan[0]['nama'] . ', Anda Sudah Presensi Masuk Kurang dari ' . $timediff->i . ' menit yang lalu", "warning");');
+			$menit = $timediff->i;
+			if ($menit < 1) {
+				$menit = 1;
+			}
+			$this->session->set_flashdata('message', 'swal("Sudan Presensi!", "Halo ' . $karyawan[0]['nama'] . ', \nAnda Sudah Presensi Masuk \nKurang dari ' . $menit . ' menit yang lalu", "warning");');
 			redirect($_SERVER['HTTP_REFERER']);
 			return false;
 		}
@@ -188,8 +192,9 @@ class Absen extends CI_Controller
 					'status' => 'masuk',
 				);
 			}
+			$dataJabatanPeserta = $this->db->get_where('jabatan', ['jabatan_id' => $dataUser['jabatan_id']])->row_array();
 			$this->absen->absen_masuk($data);
-			$this->session->set_flashdata('message', 'swal("Selamat datang ' . $dataUser['nama'] . '!", "Berhasil ' . $alert . '", "success");');
+			$this->session->set_flashdata('message', 'swal("' . strtoupper($dataUser['nama']) . '", "' . $dataJabatanPeserta['jabatan_nama'] . '\nBerhasil Presensi,\nTerimakasih ☺️", "success");');
 			redirect($_SERVER['HTTP_REFERER']);
 		}
 	}

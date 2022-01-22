@@ -25,7 +25,7 @@
 					</li> -->
 					<!-- <li><a href="<?= base_url('ambil-qr-code'); ?>"><i class="icon-pencil-ruler"></i>Ambil QR Code</a></li> -->
 					<li><a href="<?= base_url('scan-qr-code'); ?>"><i class="icon-pencil-ruler"></i>Scan QR Code</a></li>
-					<li><a href="<?= base_url('data-absensi'); ?>">Data Absensi</a></li>
+					<li><a href="<?= base_url('data-absensi'); ?>"><i class="icon-pencil-ruler"></i>Data Absensi</a></li>
 
 					<!-- <li class="has-submenu">
 						<a href="#"><i class="icon-pencil-ruler"></i> Master Absensi <i class="mdi mdi-chevron-down mdi-drop"></i></a>

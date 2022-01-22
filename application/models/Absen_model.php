@@ -43,6 +43,14 @@ class Absen_model extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
+	public function getJabatan($id)
+	{
+		$this->db->select('*');
+		$this->db->from('jabatan');
+		$this->db->where('jabatan_id', $id);
+		return $this->db->get()->result_array();
+	}
+
 	public function joinAbsen()
 	{
 		$this->db->select('*');
