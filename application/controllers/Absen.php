@@ -194,7 +194,7 @@ class Absen extends CI_Controller
 			}
 			$dataJabatanPeserta = $this->db->get_where('jabatan', ['jabatan_id' => $dataUser['jabatan_id']])->row_array();
 			$this->absen->absen_masuk($data);
-			$this->session->set_flashdata('message', 'swal("' . strtoupper($dataUser['nama']) . '", "' . $dataJabatanPeserta['jabatan_nama'] . '\nBerhasil Presensi,\nTerimakasih ☺️", "success");');
+			$this->session->set_flashdata('message', 'swal("' . strtoupper($dataUser['nama']) . '", "' . $dataJabatanPeserta['jabatan_nama'] . '\nBerhasil Presensi, Terimakasih!", "success");');
 			redirect($_SERVER['HTTP_REFERER']);
 		}
 	}
